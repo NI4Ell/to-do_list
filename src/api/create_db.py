@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 
 from src.database import engine, Base
 
-db_router = APIRouter()
+db_router = APIRouter(tags=["Создание базы данных"])
 
 
 @db_router.post('/setup_db')

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import mapped_column, Mapped
-from sqlalchemy import DateTime
+from sqlalchemy import DateTime, func
 from datetime import datetime
 
 from src.database import Base
@@ -12,4 +12,6 @@ class TaskModel(Base):
     name: Mapped[str]
     discr: Mapped[str]
     done: Mapped[bool]
-    # date: Mapped[datetime] = mapped_column(default=datetime.now)
+    created_date: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )

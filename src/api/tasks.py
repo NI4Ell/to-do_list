@@ -3,13 +3,13 @@ from sqlalchemy import select
 
 from src.api.dependencies import SessionDep
 from src.models.tasks import TaskModel
-from src.schemas.tasks import TaskSchema, TaskUpdateSchema
+from src.schemas.tasks import TaskSchema
 
-tasks_router = APIRouter()
+tasks_router = APIRouter(tags=["Задачи"])
 
 
 @tasks_router.get('/tasks')
-async def get_all_tasks(session: SessionDep) -> list[TaskSchema]:
+async def get_all_tasks(session: SessionDep):
     query = select(TaskModel)
     result = await session.execute(query)
     return result.scalars().all()
@@ -28,7 +28,7 @@ async def post_tasks(data: TaskSchema, session: SessionDep):
 
 
 @tasks_router.put('/tasks/{id}')
-async def put_task(data: TaskUpdateSchema, session: SessionDep, id: int):
+async def put_task(data: TaskSchema, session: SessionDep, id: int):
     update_task = await session.get(TaskModel, id)
     if update_task != None:
         update_task.name = data.name
