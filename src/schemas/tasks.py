@@ -6,4 +6,4 @@ class TaskSchema(BaseModel):
     name: str
     discr: str
     done: bool = False
-    date: datetime = datetime.now
+    deadline: datetime = datetime.now

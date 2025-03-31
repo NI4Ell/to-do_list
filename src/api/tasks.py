@@ -20,7 +20,8 @@ async def post_tasks(data: TaskSchema, session: SessionDep):
     new_task = TaskModel(
         name=data.name,
         discr=data.discr,
-        done=data.done
+        done=data.done,
+        deadline=data.deadline
     )
     session.add(new_task)
     await session.commit()
@@ -34,6 +35,7 @@ async def put_task(data: TaskSchema, session: SessionDep, id: int):
         update_task.name = data.name
         update_task.discr = data.discr
         update_task.done = data.done
+        update_task.deadline = data.deadline
         session.add(update_task)
         await session.commit()
         return {'success': True}

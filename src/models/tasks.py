@@ -12,6 +12,6 @@ class TaskModel(Base):
     name: Mapped[str]
     discr: Mapped[str]
     done: Mapped[bool]
-    created_date: Mapped[datetime] = mapped_column(
+    deadline: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
