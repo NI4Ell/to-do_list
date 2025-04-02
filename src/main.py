@@ -20,4 +20,4 @@ app.include_router(tasks_router)
 
 
 if __name__ == "__main__":
-    uvicorn.run()
+    uvicorn.run("src.main:app")
